@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
-                                leading: Icon(FontAwesomeIcons.twitter),
+                                leading: const Icon(FontAwesomeIcons.twitter),
                                 onTap: () => _launchURL(
                                     snapshot.data!.elementAt(index).infoUrl),
                                 title:
