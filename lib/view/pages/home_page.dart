@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    futureAgencies = API().fetchAgencies('NSA');
+    futureAgencies = API().fetchAgencies('');
   }
 
   _launchURL(String url) async {
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               RichText(
                 text: TextSpan(
                   style: TextStyle(
-                      color: const Color(0xFF003C71),
+                      color: Palette.text,
                       fontSize: 60.0,
                       fontFamily: GoogleFonts.trirong().fontFamily),
                   children: const <TextSpan>[
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text(
                   'Submit',
                   style: TextStyle(
-                    color: Color(0xFF003C71),
+                    color: Palette.text,
                   ),
                 ),
               ),
@@ -109,6 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
+                                leading: Icon(FontAwesomeIcons.twitter),
                                 onTap: () => _launchURL(
                                     snapshot.data!.elementAt(index).infoUrl),
                                 title:
@@ -119,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                           );
                         } else if (snapshot.hasError) {
+                          // ignore: avoid_print
                           print('${snapshot.error}');
                           return const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 50.0),

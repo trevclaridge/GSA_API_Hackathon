@@ -5,3 +5,4 @@ import 'dart:convert';
 
 part 'api.dart';
 part 'agency.dart';
+part 'social_media.dart';

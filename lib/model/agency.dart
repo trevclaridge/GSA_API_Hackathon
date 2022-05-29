@@ -26,4 +26,10 @@ class Agency {
       socialMediaCount: json['social_media_count'] ?? 0,
     );
   }
+
+  void fillSocialMedias() {
+    if (this.socialMediaCount != 0) {
+      API().fetchSocialMedias(this.id);
+    }
+  }
 }

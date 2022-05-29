@@ -32,4 +32,23 @@ class API {
       throw Exception('Failed to load agency');
     }
   }
+
+  Future<List<SocialMedia>> fetchSocialMedias(int id) async {
+    final response = await http.get(Uri.parse(
+        'https://api.gsa.gov/technology/digital-registry/v1/social_media?agencies=$id&API_KEY=$_apiKey'));
+
+    if (response.statusCode == 200) {
+      List<SocialMedia> socialMedias = [];
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      for (var each in jsonDecode(response.body)['results']) {
+        socialMedias.add(SocialMedia.fromJson(each));
+      }
+      return socialMedias;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load agency');
+    }
+  }
 }
