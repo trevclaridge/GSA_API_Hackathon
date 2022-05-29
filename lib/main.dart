@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:open_gsa_hackathon/view/view.dart';
-import 'package:open_gsa_hackathon/model/model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }

@@ -14,15 +14,18 @@ class API {
     return _apiKey;
   }
 
-  Future<Agency> fetchAgency(String input) async {
+  Future<List<Agency>> fetchAgencies(String input) async {
     final response = await http.get(Uri.parse(
         'https://api.gsa.gov/technology/digital-registry/v1/agencies?q=$input&API_KEY=$_apiKey'));
 
     if (response.statusCode == 200) {
+      List<Agency> agencies = [];
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      var agencyMap = jsonDecode(response.body)['results'][0];
-      return Agency.fromJson(agencyMap);
+      for (var each in jsonDecode(response.body)['results']) {
+        agencies.add(Agency.fromJson(each));
+      }
+      return agencies;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
